@@ -75,3 +75,57 @@ main {
   font-style: italic;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
 }
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 65px;
+  width: 200px;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(43px);
+}
+
+.slider.round {
+  height: 2.5rem;
+  width: 5rem;
+  top: 2.35em;
+  left: 90%;
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
