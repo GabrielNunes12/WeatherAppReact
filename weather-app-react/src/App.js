@@ -8,13 +8,14 @@ function App() {
 
   const handleSearchBar = (event) => {
     event.preventDefault();
+    if (event.target.value.trim() === ' ') return;
     const separatingValues = event.target.value;
     setQuery(separatingValues);
   }
 
   const fetchWeather = (event) => {
     if (event.key === 'Enter') {
-      requestConfig.get(`https://api.openweathermap.org/data/2.5/weather?lat=${query.split(' ')[0]}&lon=${query.split(' ')[1]}&appid=ac07016af89b69efc7c7b4d0f13516e0`)
+      requestConfig.get(`https://api.openweathermap.org/data/2.5/weather?lat=${query.split(' ')[0]}&lon=${query.split(' ')[1]}&units=metric&appid=ac07016af89b69efc7c7b4d0f13516e0`)
         .then((res) => {
           console.log('res', res);
           setResults(res.data);
@@ -48,18 +49,28 @@ function App() {
         </div>
         {results.main && results.name.length !== 0 ?
           (
-            <div
-              className="weather-wrap"
-            >
-              <div className="location-box">
-                <div className="location">
-                  {results.name}, {results.sys.country}
-                </div>
-                <div className="date">
-                  {dateBuilder()}
+            <> 
+              <div
+                className="weather-wrap"
+              >
+                <div className="location-box">
+                  <div className="location">
+                    {results.name}, {results.sys.country}
+                  </div>
+                  <div className="date">
+                    {dateBuilder()}
+                  </div>
                 </div>
               </div>
-            </div>
+              <div className="weather-box"> 
+                <div className="temp">
+                  {Math.round(results.main.temp).toFixed(1)}ºC
+                </div>
+                <div className="weather">
+                  {results.weather[0].main}
+                </div>
+              </div>
+            </>
           )
           :
           (
