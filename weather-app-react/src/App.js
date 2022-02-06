@@ -1,6 +1,7 @@
 import './App.css';
 import { useState } from 'react';
 import requestConfig from './ApiConfig/requestConfig';
+import DateComponent from './Components/Date';
 function App() {
   const [query, setQuery] = useState([]);
 
@@ -26,16 +27,6 @@ function App() {
     }
   }
 
-  const dateBuilder = () => {
-    const date = new Date();
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const day = days[date.getDay()];
-    const month = months[date.getMonth()];
-    const fullYear = date.getFullYear();
-    return `${month} ${day} ${fullYear}`;
-  }
-
   return (
     <div className="App">
       <main>
@@ -57,9 +48,7 @@ function App() {
                   <div className="location">
                     {results.name}, {results.sys.country}
                   </div>
-                  <div className="date">
-                    {dateBuilder()}
-                  </div>
+                  <DateComponent/>
                 </div>
               </div>
               <div className="weather-box"> 
