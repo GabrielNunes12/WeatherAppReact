@@ -37,7 +37,7 @@ function App() {
 
   return (
     <div className="App">
-      <ThemeProvider theme={theme === 'light' ? darkTheme : lightTheme}>
+      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
         <GlobalStyles />
         <main>
           <label className="switch">
