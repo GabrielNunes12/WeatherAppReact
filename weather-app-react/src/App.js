@@ -13,7 +13,7 @@ function App() {
 
   const handleSearchBar = (event) => {
     event.preventDefault();
-    if (event.target.value.trim() === ' ') return;
+    if (event.target.value.trim() === ' ' || event.target.value.trimstart(' ') === ' ') return;
     const separatingValues = event.target.value;
     setQuery(separatingValues);
   }
