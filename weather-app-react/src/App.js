@@ -1,9 +1,10 @@
 import './App.css';
 import { useState } from 'react';
-import requestConfig from './ApiConfig/requestConfig';
 import DateComponent from './Components/Date';
 import { ThemeProvider } from "styled-components";
+import {Axios as axios} from "axios";
 import { darkTheme, lightTheme, GlobalStyles } from './Styles/index';
+import { apiKey, baseUrl } from './ApiConfig/Connection';
 
 function App() {
   const [query, setQuery] = useState([]);
@@ -24,7 +25,7 @@ function App() {
 
   const fetchWeather = (event) => {
     if (event.key === 'Enter') {
-      requestConfig.get(`https://api.openweathermap.org/data/2.5/weather?lat=${query.split(' ')[0]}&lon=${query.split(' ')[1]}&units=metric&appid=ac07016af89b69efc7c7b4d0f13516e0`)
+      axios.get(`${baseUrl}weather?lat=${query.split(' ')[0]}&lon=${query.split(' ')[1]}&units=metric&appid=${apiKey}`)
         .then((res) => {
           setResults(res.data);
         })
